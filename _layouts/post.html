@@ -1,0 +1,51 @@
+---
+layout: default
+---
+<article class="full">
+    <header>
+        <p class="date">{{ page.date | date_to_long_string}}</p>
+        <h1>{{ page.title | escape }}</h1>
+
+        <ul class="details">
+            <li class="tags">
+                <span class="glyphicon glyphicon-tags"></span>
+                <ul>
+                {% for tag in page.tags %}
+                    <li{% if forloop.last %} class="last"{% endif %}><a href="/tag/{{ tag }}">{{ tag | escape }}</a></li>
+                {% endfor %}
+                </ul>
+            </li>
+            <li class="comments"><span class="glyphicon glyphicon-comment"></span> <a href="{{ site.url }}{{ page.url }}#disqus_thread">Comments</a></li>
+        </ul>
+    </header>
+
+    {{ content }}
+
+    <footer>
+        <ul class="interaction-options list-inline">
+            <li><a href="https://twitter.com/intent/tweet?url={{ site.url | cgi_escape }}{{ page.url | cgi_escape }}&text={{ page.title | cgi_escape }}" target="_blank">Share on Twitter</a></li>
+            <li><a href="#wrapper">&uarr; Back to top</a></li>
+        </ul>
+
+        <div id="disqus_thread"></div>
+        <script>
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </footer>
+</article>
+
+<ul class="pager">
+    {% if page.next %}
+        <li class="previous"><a href="{{ page.next.url }}">&larr; Newer</a></li>
+    {% endif %}
+
+    {% if page.previous %}
+        <li class="next"><a href="{{ page.previous.url }}">Older &rarr;</a></li>
+    {% endif %}
+</ul>

@@ -1,0 +1,26 @@
+---
+layout: default
+title: A personal blog about software development and other technical things...
+group: blog
+---
+{% if 1 == paginator.page %}
+    <h1>Latest Posts</h1>
+{% else %}
+    <h1>Post Archive</h1>
+{% endif %}
+
+{% include post-listing.html %}
+
+<ul class="pager">
+    {% if paginator.previous_page %}
+        {% if 1 == paginator.previous_page %}
+            <li class="previous"><a href="/">&larr; Newer Posts</a></li>
+        {% else %}
+            <li class="previous"><a href="{{ paginator.previous_page_path }}">&larr; Newer Posts</a></li>
+        {% endif %}
+    {% endif %}
+
+    {% if paginator.next_page %}
+        <li class="next"><a href="{{ paginator.next_page_path }}">Older Posts &rarr;</a></li>
+    {% endif %}
+</ul>
