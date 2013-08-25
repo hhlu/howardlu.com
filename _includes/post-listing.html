@@ -1,5 +1,5 @@
 {% for post in paginator.posts %}
-<article class="summary">
+<article class="summary{% if forloop.last %} last{% endif %}">
     <header>
         <p class="date">{{ post.date | date_to_long_string}}</p>
         <h2><a href="{{ post.url }}">{{ post.title | escape }}</a></h2>
@@ -17,6 +17,6 @@
         </ul>
     </header>
 
-    <div class="excerpt">{{ post.excerpt }}</div>
+    {{ post.excerpt }}
 </article>
 {% endfor %}

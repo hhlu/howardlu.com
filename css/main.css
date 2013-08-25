@@ -14,7 +14,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     line-height: 1.75;
-    background-color: #f7f7f7;
+    background-color: #f4f4f4;
     color: #777;
 }
 
@@ -62,7 +62,7 @@ a:hover {
 }
 
 pre {
-    background-color: #f0f0f0;
+    background-color: #f7f7f7;
     display: block;
     font-size: 14px;
     padding: 20px;
@@ -155,16 +155,17 @@ header.main {
 }
 
 header.main p.title {
-    color: #fff;
+    color: #474747;
     font-family: 'Bree Serif', serif;
     font-size: 90px;
     line-height: 1;
     margin-top: 0;
     margin-bottom: 15px;
+    text-shadow: 1px 1px 1px #fff;
 }
 
 header.main p.subtitle {
-    color: #999;
+    color: #e0e0e0;
     font-family: 'Quattrocento', serif;
     font-size: 20px;
     font-weight: bold;
@@ -215,7 +216,12 @@ article {
     overflow: hidden;
 }
 article.summary {
-    margin-bottom: 1.3125em;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 1.75em;
+}
+article.summary.last {
+    border-bottom: 0;
+    margin-bottom: 0;
 }
 
 article.full header h1 {
@@ -255,10 +261,6 @@ article ul.details .tags li:after {
 }
 article ul.details .tags li.last:after {
     content: "";
-}
-
-article .excerpt p {
-    margin-bottom: 0.875em;
 }
 
 article.full footer ul.interaction-options {
@@ -340,6 +342,16 @@ article.full footer ul.interaction-options {
 #disqus_thread {
     padding: 1.75em 0;
 }
+
+::selection {
+    background-color: #f07057;
+    color: #f4f4f4;
+}
+::-moz-selection {
+    background-color: #f07057;
+    color: #f4f4f4;
+}
+
 
 @media (max-width: 768px) {
     .navbar-header {
