@@ -2,8 +2,8 @@
 layout: post
 group: blog
 tags:
-- tag1
-- tag2
+- Tag1
+- Tag2
 - tag3
 ---
 

@@ -2,7 +2,9 @@
 .wf-loading h2,
 .wf-loading h3,
 .wf-loading p,
-.wf-loading a {
+.wf-loading ul,
+.wf-loading a,
+.wf-loading label {
     visibility: hidden;
 }
 
@@ -188,7 +190,7 @@ header.main p.subtitle {
   }
 }
 
-div#main {
+main {
     overflow: hidden;
     padding: 20px 0 40px;
 }
@@ -267,6 +269,9 @@ article.full footer ul.interaction-options {
     text-align: right;
 }
 
+.btn {
+    font-weight: bold;
+}
 .btn-primary {
     color: #ffffff;
     background-color: #f07057;
@@ -350,6 +355,63 @@ article.full footer ul.interaction-options {
 ::-moz-selection {
     background-color: #f07057;
     color: #f4f4f4;
+}
+
+#search {
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    display: none;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 9000;
+}
+#search .container {
+    padding: 50px 15px;
+}
+#search a {
+    color: #fff;
+}
+#search a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+#search-form {
+    float: left;
+    margin-bottom: 1.75em;
+    width: 100%;
+}
+#search-form label {
+    color: #f4f4f4;
+    font-family: 'Quattrocento', serif;
+    font-size: 38px;
+}
+#search-form a.search-toggle {
+    float: right;
+}
+
+#search-results {
+    float: left;
+    width: 100%;
+}
+#search-results h3 {
+    color: #f4f4f4;
+}
+#search-results ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+#search-results a {
+    font-weight: bold;
+}
+#search-results span.date {
+    color: #676767;
+    padding-right: 15px;
 }
 
 @media (max-width: 768px) {
