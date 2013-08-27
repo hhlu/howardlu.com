@@ -3,8 +3,7 @@
 .wf-loading h3,
 .wf-loading p,
 .wf-loading ul,
-.wf-loading a,
-.wf-loading label {
+.wf-loading a {
     visibility: hidden;
 }
 
@@ -335,6 +334,13 @@ article.full footer ul.interaction-options {
 
 .glyphicon {
     padding-right: 5px;
+}
+/*
+Glyphicons will not display after being hidden by the .wf-loading rule
+in IE8.
+*/
+.lt-ie9 .glyphicon {
+    visibility: visible !important;
 }
 
 .img.pull-left {
