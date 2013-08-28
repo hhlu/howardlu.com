@@ -184,9 +184,9 @@ header.main p.subtitle {
 }
 
 @media (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
+    .container {
+        max-width: 750px;
+    }
 }
 
 main {
