@@ -1,13 +1,10 @@
 ---
 ---
-[
-{% for post in site.posts %}
+[{% for post in site.posts %}
     {
         "title":"{{ post.title }}",
         "date":"{{ post.date | date_to_string }}",
         "url":"{{ post.url }}",
         "tags":[{% for tag in post.tags %}"{{ tag }}"{% if false == forloop.last %},{% endif %}{% endfor %}]
-    },
-{% endfor %}
-    false
-]
+    }{% if false == forloop.last %},{% endif %}
+{% endfor %}]
