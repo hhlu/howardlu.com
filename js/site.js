@@ -1,5 +1,5 @@
 ---
 ---
-{% include js/minified/fonts.js %}
-{% include js/minified/blogsearch.js %}
-{% include js/minified/main.js %}
+{% include js/fonts.js %}
+{% include js/blogsearch.js %}
+{% include js/main.js %}

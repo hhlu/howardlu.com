@@ -1,5 +1,5 @@
 ---
 ---
 {% include css/vendor/bootstrap.css %}
-{% include css/minified/main.css %}
-{% include css/minified/syntax.css %}
+{% include css/main.css %}
+{% include css/syntax.css %}

@@ -1,18 +1,27 @@
+require 'webrick'
+
+STAGE_DIR = '_stage'
+BUILD_DIR = '_site'
+
+BUILD_CSS_DIR = BUILD_DIR + '/css'
+BUILD_JS_DIR = BUILD_DIR + '/js'
+
+BUILD_CSS = BUILD_CSS_DIR + '/site.css'
+BUILD_JS = BUILD_JS_DIR + '/site.js'
+
 desc 'Deploys site to hhlu/hhlu.github.com'
-task :deploy => [:build, :minify_html] do
+task :deploy => [:build] do
     print 'Continue with deployment? (y/n) '
 
     deploy = true ? 'y' == $stdin.gets.chomp() : false
     if deploy
-        deploy_dir = '_deploy'
-
         puts 'Deploying site...'
 
-        %x[mkdir #{deploy_dir}]
-        %x[git clone https://github.com/hhlu/hhlu.github.com.git #{deploy_dir}]
-        %x[find #{deploy_dir}/* ! -path '.' ! -path '*/.git*' -exec rm -rf {} +]
-        %x[cp -a _site/* #{deploy_dir}]
-        %x[cd #{deploy_dir} && git add -A * && git push]
+        %x[mkdir #{STAGE_DIR}]
+        %x[git clone https://github.com/hhlu/hhlu.github.com.git #{STAGE_DIR}]
+        %x[find #{STAGE_DIR}/* ! -path '.' ! -path '*/.git*' -exec rm -rf {} +]
+        %x[cp -a #{BUILD_DIR}/* #{STAGE_DIR}]
+        %x[cd #{STAGE_DIR} && git add -A * && git push]
 
         deploy_cleanup()
     else
@@ -25,12 +34,10 @@ end
 
 desc 'Serves the site locally'
 task :serve => [:build] do
-    require 'webrick'
-
     server = WEBrick::HTTPServer.new(
         :BindAddress => '10.0.2.15',
         :Port => 4000,
-        :DocumentRoot => '_site'
+        :DocumentRoot => BUILD_DIR
     )
     trap('INT') do
         server.shutdown
@@ -39,51 +46,42 @@ task :serve => [:build] do
 end
 
 desc 'Generates static site files with Jekyll'
-multitask :build => [:minify_css, :minify_js] do
+task :build do
     puts 'Building site...'
     %x[jekyll build]
 
-    Rake::Task[:minify_html].invoke()
+    js_minify_thread = Thread.new {
+        minify_build_js()
+    }
+    css_minify_thread = Thread.new {
+        minify_build_css()
+    }
+    html_minify_thread = Thread.new {
+        minify_build_html()
+    }
+
+    js_minify_thread.join()
+    css_minify_thread.join()
+    html_minify_thread.join()
 end
 
-desc 'Minifies CSS files'
-task :minify_css do
-    css_folder = '_includes/css'
-
+def minify_build_css()
     puts 'Minifying CSS...'
-    files = %x[find #{css_folder} -maxdepth 1 -name '*.css' -printf '%f\n'] \
-        .split(/\n/)
-
-    files.each do |file|
-        %x[yui --type css --charset utf-8 \
-            -o #{css_folder}/minified/#{file} \
-            #{css_folder}/#{file}]
-    end
+    %x[yui --type css --charset utf-8 -o #{BUILD_CSS} #{BUILD_CSS}]
 end
 
-desc 'Minifies JavaScript files'
-task :minify_js do
-    js_folder = '_includes/js'
-
+def minify_build_js()
     puts 'Minifying JS...'
-    files = %x[find #{js_folder} -maxdepth 1 -name '*.js' -printf '%f\n'] \
-        .split(/\n/)
-
-    files.each do |file|
-        %x[closure --js #{js_folder}/#{file} \
-            --js_output_file #{js_folder}/minified/#{file}]
-    end
+    %x[closure --js #{BUILD_JS} --js_output_file #{BUILD_JS}.tmp]
+    %x[mv #{BUILD_JS}.tmp #{BUILD_JS}]
 end
 
-desc 'Minifies HTML files'
-task :minify_html => [:build] do
-    site_folder = '_site'
-
+def minify_build_html()
     puts 'Minifying HTML...'
     %x[htmlcompressor --type html --charset utf-8 --recursive --compress-js \
-        --compress-css --js-compressor closure -o #{site_folder} #{site_folder}]
+        --compress-css --js-compressor closure -o #{BUILD_DIR} #{BUILD_DIR}]
 end
 
 def deploy_cleanup()
-    %x[rm -rf _deploy]
+    %x[rm -rf #{STAGE_DIR}]
 end
