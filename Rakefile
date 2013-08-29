@@ -24,17 +24,18 @@ task :deploy => [:build, :minify_html] do
 end
 
 desc 'Generates static site files with Jekyll'
-task :build => [:minify_css, :minify_js] do
-    print 'Building site...'
+multitask :build => [:minify_css, :minify_js] do
+    puts 'Building site...'
     %x[jekyll build]
-    puts ' done'
+
+    Rake::Task[:minify_html].invoke()
 end
 
 desc 'Minifies CSS files'
 task :minify_css do
     css_folder = '_includes/css'
 
-    print 'Minifying CSS...'
+    puts 'Minifying CSS...'
     files = %x[find #{css_folder} -maxdepth 1 -name '*.css' -printf '%f\n'] \
         .split(/\n/)
 
@@ -43,15 +44,13 @@ task :minify_css do
             -o #{css_folder}/minified/#{file} \
             #{css_folder}/#{file}]
     end
-
-    puts ' done'
 end
 
 desc 'Minifies JavaScript files'
 task :minify_js do
     js_folder = '_includes/js'
 
-    print 'Minifying JS...'
+    puts 'Minifying JS...'
     files = %x[find #{js_folder} -maxdepth 1 -name '*.js' -printf '%f\n'] \
         .split(/\n/)
 
@@ -59,19 +58,15 @@ task :minify_js do
         %x[closure --js #{js_folder}/#{file} \
             --js_output_file #{js_folder}/minified/#{file}]
     end
-
-    puts ' done'
 end
 
 desc 'Minifies HTML files'
 task :minify_html => [:build] do
     site_folder = '_site'
 
-    print 'Minifying HTML...'
+    puts 'Minifying HTML...'
     %x[htmlcompressor --type html --charset utf-8 --recursive --compress-js \
         --compress-css --js-compressor closure -o #{site_folder} #{site_folder}]
-
-    puts ' done'
 end
 
 def deploy_cleanup()
