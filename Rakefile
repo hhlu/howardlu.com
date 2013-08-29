@@ -1,24 +1,24 @@
 desc 'Deploys site to hhlu/hhlu.github.com'
-task :deploy => [:build] do
+task :deploy => [:build, :minify_html] do
     print 'Continue with deployment? (y/n) '
 
     deploy = true ? 'y' == $stdin.gets.chomp() : false
     if deploy
-        deployment_dir = '_deploy'
+        deploy_dir = '_deploy'
 
         puts 'Deploying site...'
 
-        %x[mkdir #{deployment_dir}]
-        %x[git clone https://github.com/hhlu/hhlu.github.com.git #{deployment_dir}]
-        %x[find #{deployment_dir}/* ! -path '.' ! -path '*/.git*' -exec rm -rf {} +]
-        %x[cp -a _site/* #{deployment_dir}]
-        %x[cd #{deployment_dir} && git add -A * && git push]
+        %x[mkdir #{deploy_dir}]
+        %x[git clone https://github.com/hhlu/hhlu.github.com.git #{deploy_dir}]
+        %x[find #{deploy_dir}/* ! -path '.' ! -path '*/.git*' -exec rm -rf {} +]
+        %x[cp -a _site/* #{deploy_dir}]
+        %x[cd #{deploy_dir} && git add -A * && git push]
 
-        deployment_cleanup()
+        deploy_cleanup()
     else
         puts 'Deployment aborted'
 
-        deployment_cleanup()
+        deploy_cleanup()
         abort()
     end
 end
@@ -63,6 +63,17 @@ task :minify_js do
     puts ' done'
 end
 
-def deployment_cleanup()
+desc 'Minifies HTML files'
+task :minify_html => [:build] do
+    site_folder = '_site'
+
+    print 'Minifying HTML...'
+    %x[htmlcompressor --type html --charset utf-8 --recursive --compress-js \
+        --compress-css --js-compressor closure -o #{site_folder} #{site_folder}]
+
+    puts ' done'
+end
+
+def deploy_cleanup()
     %x[rm -rf _deploy]
 end
