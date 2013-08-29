@@ -23,6 +23,21 @@ task :deploy => [:build, :minify_html] do
     end
 end
 
+desc 'Serves the site locally'
+task :serve => [:build] do
+    require 'webrick'
+
+    server = WEBrick::HTTPServer.new(
+        :BindAddress => '10.0.2.15',
+        :Port => 4000,
+        :DocumentRoot => '_site'
+    )
+    trap('INT') do
+        server.shutdown
+    end
+    server.start
+end
+
 desc 'Generates static site files with Jekyll'
 multitask :build => [:minify_css, :minify_js] do
     puts 'Building site...'
