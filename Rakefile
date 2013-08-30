@@ -65,23 +65,31 @@ task :build do
     html_minify_thread.join()
 end
 
+# Minifies the CSS file specified by BUILD_CSS.
+#
 def minify_build_css()
     puts 'Minifying CSS...'
     %x[yui --type css --charset utf-8 -o #{BUILD_CSS} #{BUILD_CSS}]
 end
 
+# Minifies the JavaScript file specified by BUILD_JS.
+#
 def minify_build_js()
     puts 'Minifying JS...'
     %x[closure --js #{BUILD_JS} --js_output_file #{BUILD_JS}.tmp]
     %x[mv #{BUILD_JS}.tmp #{BUILD_JS}]
 end
 
+# Recursively minifies all HTML files found in BUILD_DIR.
+#
 def minify_build_html()
     puts 'Minifying HTML...'
     %x[htmlcompressor --type html --charset utf-8 --recursive --compress-js \
         --compress-css --js-compressor closure -o #{BUILD_DIR} #{BUILD_DIR}]
 end
 
+# Deletes the directory specified by STAGE_DIR.
+#
 def deploy_cleanup()
     %x[rm -rf #{STAGE_DIR}]
 end
