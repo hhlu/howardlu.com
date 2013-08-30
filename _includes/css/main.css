@@ -77,9 +77,6 @@ pre {
     box-shadow: 0 1px 3px #999;
     width: 100%;
 }
-.navbar-fixed-top {
-    position: static;
-}
 
 .nav > li > a {
     color: #222;
@@ -437,15 +434,10 @@ in IE8.
         height: 60px;
         width: 100%;
     }
-    .navbar-fixed-top {
-        position: fixed;
-    }
-
-    main {
-        padding-top: 100px;
-    }
 
     header.main {
-        display: none;
+        height: 0;
+        overflow: hidden;
+        padding: 0;
     }
 }
