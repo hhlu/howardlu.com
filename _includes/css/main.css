@@ -62,8 +62,16 @@ a:hover {
     text-decoration: none;
 }
 
+code {
+    background-color: #ddd;
+    color: #333;
+    font-size: 14px;
+}
+
 pre {
-    background-color: #f7f7f7;
+    background-color: #ddd;
+    border-color: #bbb;
+    color: #333;
     display: block;
     font-size: 14px;
     padding: 20px;
