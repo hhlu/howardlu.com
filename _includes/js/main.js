@@ -9,14 +9,14 @@ $(function() {
             $(this).scrollTop() >= $header.offset().top + $header.innerHeight()
         ) {
             $nav.css({
-                left: 0,
                 position: 'fixed',
                 top: 0
             });
         }
         else {
             $nav.css({
-                position: 'static'
+                position: 'absolute',
+                top: 'auto'
             });
         }
     });
