@@ -77,6 +77,9 @@ pre {
     box-shadow: 0 1px 3px #999;
     width: 100%;
 }
+.navbar-fixed-top {
+    position: static;
+}
 
 .nav > li > a {
     color: #222;
@@ -186,6 +189,11 @@ header.main p.subtitle {
 @media (min-width: 768px) {
     .container {
         max-width: 750px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
     }
 }
 
@@ -428,6 +436,13 @@ in IE8.
     .lt-ie8 .navbar-header {
         height: 60px;
         width: 100%;
+    }
+    .navbar-fixed-top {
+        position: fixed;
+    }
+
+    main {
+        padding-top: 100px;
     }
 
     header.main {
