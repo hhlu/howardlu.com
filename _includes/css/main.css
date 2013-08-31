@@ -214,17 +214,55 @@ footer.main {
     font-size: 20px;
     margin-top: 150px;
     padding: 40px 0;
-    text-align: right;
-}
-footer.main p {
-    margin: 0;
-}
 
+}
 footer.main a {
     color: #fff;
 }
 footer.main a:hover {
     text-decoration: underline;
+}
+footer.main p.copyright {
+    clear: both;
+    float: right;
+    margin: 0;
+}
+
+footer.main ul.social-media-icons {
+    float: right;
+    list-style: none;
+    margin: 0 0 0.875em 0;
+    padding: 0;
+}
+footer.main ul.social-media-icons li {
+    float: left;
+    margin-left: 10px;
+    text-indent: -9999px;
+}
+footer.main ul.social-media-icons li a {
+    background-image: url("../template/social-media-icons.png");
+    background-repeat: no-repeat;
+    display: block;
+    height: 36px;
+    width: 36px;
+}
+footer.main ul.social-media-icons li.linkedin a {
+    background-position: 0 0;
+}
+footer.main ul.social-media-icons li.linkedin a:hover {
+    background-position: 0 -36px;
+}
+footer.main ul.social-media-icons li.github a {
+    background-position: -36px 0;
+}
+footer.main ul.social-media-icons li.github a:hover {
+    background-position: -36px -36px;
+}
+footer.main ul.social-media-icons li.rss a {
+    background-position: -72px 0;
+}
+footer.main ul.social-media-icons li.rss a:hover {
+    background-position: -72px -36px;
 }
 
 article {
