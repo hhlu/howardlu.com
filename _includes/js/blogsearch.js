@@ -3,6 +3,7 @@ function BlogSearch() {
     var MIN_WORD_LENGTH = 3;
 
     var self = this;
+    var $body = $('body');
     var $searchOverlay = $('#search');
     var $searchInput = $('#blog-search');
     var $resultContainer = $('#search-results');
@@ -66,12 +67,32 @@ function BlogSearch() {
         $toggleLink.click(function(e) {
             e.preventDefault();
 
-            $searchOverlay.fadeToggle();
-            $searchInput.focus();
+            // Add the noscroll class to body before showing the overlay.
+            if ($searchOverlay.is(':hidden')) {
+                $body.addClass('noscroll');
+            }
+
+            $searchOverlay.fadeToggle(
+                400,
+                function() {
+                    if ($(this).is(':visible')) {
+                        $searchInput.focus();
+                    }
+                    else {
+                        $body.removeClass('noscroll');
+                    }
+                }
+            );
         });
+
         $(document).keyup(function(e) {
             if (SEARCH_CLOSE_KEY_CODE == e.keyCode) {
-                $searchOverlay.fadeOut();
+                $searchOverlay.fadeOut(
+                    400,
+                    function() {
+                        $body.removeClass('noscroll');
+                    }
+                );
             }
         });
     };
