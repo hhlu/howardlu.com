@@ -55,7 +55,7 @@ module Jekyll
 
             def self.paginate_path(site, num_page, tag)
                 paginate_path_prefix = self::PAGINATE_PATH_PREFIX
-                paginate_path_prefix = paginate_path_prefix.sub(':tag', tag)
+                paginate_path_prefix = paginate_path_prefix.sub(':tag', tag.downcase())
 
                 if num_page.nil? || num_page <= 1
                     format = paginate_path_prefix
