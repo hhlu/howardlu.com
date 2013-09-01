@@ -271,11 +271,17 @@ footer.main ul.social-media-icons li.github a {
 footer.main ul.social-media-icons li.github a:hover {
     background-position: -36px -36px;
 }
-footer.main ul.social-media-icons li.rss a {
+footer.main ul.social-media-icons li.twitter a {
     background-position: -72px 0;
 }
-footer.main ul.social-media-icons li.rss a:hover {
+footer.main ul.social-media-icons li.twitter a:hover {
     background-position: -72px -36px;
+}
+footer.main ul.social-media-icons li.rss a {
+    background-position: -108px 0;
+}
+footer.main ul.social-media-icons li.rss a:hover {
+    background-position: -108px -36px;
 }
 
 article {
