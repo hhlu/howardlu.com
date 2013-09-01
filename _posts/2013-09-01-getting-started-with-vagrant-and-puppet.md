@@ -6,7 +6,7 @@ tags:
 - Systems
 - VMs
 ---
-Vagrant is a software allowing easy creation and management of virtual machines,
+Vagrant is an application allowing easy creation and management of virtual machines,
 and Puppet is a system configuration tool that works with it.
 
 At my workplace, we use both of these to streamline our development process—you
