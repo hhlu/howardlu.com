@@ -246,8 +246,11 @@ footer.main ul.social-media-icons {
 }
 footer.main ul.social-media-icons li {
     float: left;
+    height: 36px;
     margin-left: 10px;
+    overflow: hidden;
     text-indent: -9999px;
+    width: 36px;
 }
 footer.main ul.social-media-icons li a {
     background-image: url("../template/social-media-icons.png");

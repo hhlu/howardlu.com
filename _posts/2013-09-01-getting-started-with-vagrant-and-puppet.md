@@ -5,31 +5,28 @@ tags:
 - Linux
 - Systems
 - VMs
-- Tutorials
 ---
-Vagrant is a piece of software allowing easy creation and management of virtual
-machines, and Puppet is one of the several system configuration management tools
-which works with it.
+Vagrant is a software allowing easy creation and management of virtual machines,
+and Puppet is a system configuration tool that works with it.
 
 At my workplace, we use both of these to streamline our development process—you
 can be sure everyone is working in the same environment, and if anyone new needs
 to be brought onto a project, all they need to do is run a single command to get
-started. This can be further extended to a production environment, where Puppet
-scripts can serve as a version-controlled source of documentation for the
-configuration on any given server.
+started. This can be further extended to a production environment where Puppet
+scripts can serve as a version-controlled source of documentation for how any
+given server is configured.
 
-While these tools certainly work well in a corporate environment, I find Vagrant
-quite useful even on a personal level as well. I think most people nowadays keep
-backups of their personal files in the case a fatal technical failure with their
-computer. However, that doesn't save you from the inconvenience of re-installing
-your all your applications and re-configuring your system settings. If the machine
-just happened to be one used for development as well, manually trying to get all
-your dependencies back to how they are supposed to be can be a huge pain. These tools
-solve this issue.
+While these tools certainly work well in a larger team environment, I find them
+quite useful personally as well. I think most people have some sort of personal
+file backup nowadays, that doesn't save you from the inconvenience of re-installing
+all your applications and re-configuring your system settings should your computer
+have a critical failure. If that machine just happened to be one used for development
+as well, manually trying to get all your dependencies back to how they are supposed
+to be can be a huge pain. These tools solve this issue.
 
 
-Since I'd actually created a Vagrant setup for developing this website, I figured
-going over the basics of it would be a good article to start with.
+Since I'd created a Vagrant setup for developing this website, I figured going
+over the basics of it would be a good article to start with.
 
 You'll need to install the necessary software to get started: Vagrant and a
 virtualization provider. Vagrant comes with out-of-the-box support for
@@ -46,18 +43,17 @@ and can be downloaded at the following links:
     <li><a href="http://downloads.vagrantup.com/" target="_blank">http://downloads.vagrantup.com/</a></li>
 </ul>
 
-## Creating a Vagrant project
+## Creating a Vagrant Project
 
-The first step is to create an empty directory and then initialize it as a
-Vagrant project.
+The first step is to create an empty directory and then initialize it with Vagrant.
 
     mkdir vagrant_vm && cd vagrant_vm
     vagrant init
 
-A `Vagrantfile` will be generated inside the directory you just created. This is
-the configuration file Vagrant will use to determine how to set up your virtual
-machine. You will see long blocks of text upon opening the file. It may be somewhat
-intimidating, but most of it are commented explanations and configuration examples.
+A `Vagrantfile` will be generated inside the directory you just created. This contains
+the configuration Vagrant will use to determine how to set up your virtual
+machine. You'll see long blocks of text upon opening the file and this may be somewhat
+intimidating. However, but most of it are commented explanations examples.
 For reference, the file uses Ruby syntax but experience with the language shouldn't
 be needed.
 
@@ -65,35 +61,35 @@ I'll only be covering how to do a basic setup but those inclined to look
 further can check out the
 <a href="http://docs.vagrantup.com/v2/" target="_blank">official documentation</a>.
 
-## Updating Vagrantfile
+## Configuring Vagrant
 
-All the configuration is this file is set up within a Ruby block, between the
+All the configuration in `Vagrantfile` is set up within a Ruby block between the
 `Vagrant.configure("2") do |config|` near the top the `end` at the bottom. The
-most important configuration value that needs to be changed is `config.vm.box = "base"`
-line. This tells Vagrant which base box to load up before configuring the machine.
-Base boxes are basically virtual machines that have been packaged for reuse. You
+most important line you need to change is `config.vm.box = "base"`.
+This tells Vagrant which base box to load up before configuring the machine.
+Base boxes are basically VMs that have been packaged for reuse. You
 can create your own from a VirtualBox VM using the
 <a href="http://docs.vagrantup.com/v2/cli/package.html" target="_blank">vagrant package</a>
-command, but I will just be using the Ubuntu 12.04 64-bit box provided
-by Vagrant. There is a long list of
+command, but I will be using the Ubuntu 12.04 64-bit box provided by Vagrant.
+There is a long list of
 <a href="http://www.vagrantbox.es/" target="_blank">other available boxes</a> as well.
 
 In order to make a base box available to Vagrant, you must first add it using the
 `vagrant add` command. The syntax is `vagrant box add box_name box_url`, where
-`box_name` can be anything you want, and `box_url` is where it can be downloaded.
+`box_name` can be anything you want and `box_url` is where the base box can be downloaded.
 For example, you can use the following to download the Ubuntu box I mentioned earlier:
 
     vagrant box add precise64 http://files.vagrantup.com/precise64.box
 
-After the box has finished downloading, you can change the `config.vm.box = "base"`
+After the download finishes, you can change the `config.vm.box = "base"`
 line we saw earlier into `config.vm.box = "precise64"`.
 
 Now you essentially have a bare bones Vagrant VM. Executing `vagrant up` should
-start up the machine. You should be able to SSH into it with `vagrant ssh`.
+start up the machine and you can SSH into it with `vagrant ssh`.
 
 ## Provisioning with Puppet
 
-You have a basic Vagrant VM now, but it won't be much use without personal
+While you have a basic Vagrant VM now, it's not much use without some personal
 configuration. This is where Puppet comes in. Further down in your Vagrantfile,
 you will see a commented block of code similar to the following:
 
@@ -102,14 +98,14 @@ you will see a commented block of code similar to the following:
     #   puppet.manifest_file  = "init.pp"
     # end
 
-This tells Vagrant to use Puppet to configure the VM, using the a file called
-`init.pp` in the `manifests` folder. Note that the path of this folder
-is relative to where your Vagrantfile is located.
+This tells Vagrant to configure the VM with Puppet using a file called
+`init.pp` in the `manifests` folder. Note that all paths are relative to where 
+your Vagrantfile is located.
 <a href="http://docs.puppetlabs.com/puppet/3/reference/index.html" target="_blank">Puppet</a>
-is quite an extensive product as you could easily tell by the length of its
+is quite an extensive product which you could easily tell by the length of its
 documentation so you'll likely want to dig further into it outside of this article.
 
-First, you will want to uncomment the block shown above. Then, add `puppet.module_path = "modules"`
+First, you'll want to uncomment the block shown above. Then, add `puppet.module_path = "modules"`
 somewhere in that block to end up with the following:
 
     config.vm.provision :puppet do |puppet|
@@ -123,12 +119,8 @@ While you can technically put all your Puppet configuration in `manifests/init.p
 this goes against Puppet best practices where all custom code should be defined
 in modules.
 
-We'll need to create several files and directories now. First, the `manifests` directory
-and the `init.pp` file. Next, create the `modules` directory and inside the new
-`modules` directory, create another directory with the name of your module.
-This can be anything you want, but I'll call mine `git`. Afterwards, create a
-`manifests` directory inside the module name directory, and then finally, create
-a file called `init.pp` inside there.
+We'll need to create several files and directories now as demonstrated by the below
+commands. I will be creating a module called `git` for this article.
 
     mkdir manifests
     touch manifests/init.pp
@@ -138,10 +130,9 @@ a file called `init.pp` inside there.
     modules/git/manifests
     touch modules/git/manifests/init.pp
 
-That was a lot of steps and I won't go into detail why this was needed. Just know
-this is the most basic configuration needed for a Puppet module to work. However,
-do check out the <a href="http://docs.puppetlabs.com/puppet/3/reference/modules_fundamentals.html#module-layout" target="_blank">official documentation</a> for a full description of a
-module layout.
+I won't go into detail why these steps are needed, but know this is the most basic
+configuration required for a Puppet module to work. However,
+do check out the <a href="http://docs.puppetlabs.com/puppet/3/reference/modules_fundamentals.html#module-layout" target="_blank">documentation</a> for a full description of how modules are laid out.
 
 In the end, you should have a directory tree like the this:
 
@@ -155,13 +146,13 @@ In the end, you should have a directory tree like the this:
 
 Open up your `modules/git/manifests/init.pp` for editing. This file must contain
 the module's main class definition with the class name exactly equalling the module
-name. For this example, the file would need this at minimum:
+name. For our class, it would need this at minimum:
 
     class git {
         # do something here
     }
 
-Since our module is called `git` though, let's install git by updating the file:
+Since our module is called `git`, let's install git by updating the file:
 
     class git {
         package { 'git':
@@ -169,8 +160,8 @@ Since our module is called `git` though, let's install git by updating the file:
         }
     }
 
-You'll want to look at the reference manual for Puppet syntax, but this will
-tell it to ensure that the `git` package is installed on your system on boot.
+You'll want to look at the reference manual for Puppet syntax, but the above will
+tell Puppet to ensure the `git` package is installed on your system.
 Puppet is smart enough to know which package manager to use for the operating system
 (apt in our case), but you could do the following to be safe:
 
@@ -203,15 +194,14 @@ module. In `modules/init.pp`, add the following:
     }
 
 Now you're done. In the directory where your `Vagrantfile` is located, run
-`vagrant reload`, which will shutdown your VM, restart it, and apply all
-the configurations. Note that `vagrant provision` can apply configurations to
-a VM that has already started, but since the `manifests` and `modules` directory
+`vagrant reload` which will shutdown your VM, restart it, and apply all
+the configurations. Note that `vagrant provision` can normally apply configurations
+to a VM while it is current running, but since the `manifests` and `modules` directory
 did not exist when you first ran `vagrant up`, you need to reload the VM in order
 for the new directories to get mounted.
 
-First start will always take a while since your configurations might have many
-might have many dependencies of their own which all need to get downloaded,
-but your output should look like this in the end:
+First start after a configuration update might take a while, but your output
+should look something like this in the end:
 
     [default] Attempting graceful shutdown of VM...
     [default] Setting the name of the VM...
@@ -237,7 +227,7 @@ but your output should look like this in the end:
 
 If you SSH into your VM again, the `git` command should now be available.
 
-What is nice is that if you ever decide you want to use your Puppet scripts
+What's nice is that if you ever decide you want to use your Puppet scripts
 without Vagrant, for example on a local machine, you can do so:
 
     puppet apply --modulepath modules manifests/init.pp
@@ -253,4 +243,5 @@ reference manuals at
 and <a href="http://docs.puppetlabs.com/puppet/3/reference/" target="_blank">http://docs.puppetlabs.com/puppet/3/reference/</a> to learn more.
 
 My Jekyll VM is available on GitHub at
-<a href="https://github.com/hhlu/vagrant-jekyll" target="_blank">https://github.com/hhlu/vagrant-jekyll</a> as well for a more complex example.
+<a href="https://github.com/hhlu/vagrant-jekyll" target="_blank">https://github.com/hhlu/vagrant-jekyll</a> as well for a more complex example. Feel free to leave a comment for any additional
+explanations or if anything was unclear.
