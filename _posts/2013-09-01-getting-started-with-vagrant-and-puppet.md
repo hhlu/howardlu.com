@@ -61,7 +61,7 @@ I'll only be covering how to do a basic setup but those inclined to look
 further can check out the
 <a href="http://docs.vagrantup.com/v2/" target="_blank">official documentation</a>.
 
-## Configuring Vagrant
+## Configuring Vagrantfile
 
 All the configuration in `Vagrantfile` is set up within a Ruby block between the
 `Vagrant.configure("2") do |config|` near the top the `end` at the bottom. The
