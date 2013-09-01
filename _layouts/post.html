@@ -11,7 +11,7 @@ layout: default
                 <span class="glyphicon glyphicon-tags"></span>
                 <ul>
                 {% for tag in page.tags %}
-                    <li{% if forloop.last %} class="last"{% endif %}><a href="/tag/{{ tag }}">{{ tag | escape }}</a></li>
+                    <li{% if forloop.last %} class="last"{% endif %}><a href="/tag/{{ tag | downcase }}">{{ tag | escape }}</a></li>
                 {% endfor %}
                 </ul>
             </li>
