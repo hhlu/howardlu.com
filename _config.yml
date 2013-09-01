@@ -3,6 +3,7 @@ permalink: pretty
 paginate: 2
 paginate_path: 'page/:num'
 
+excerpt_separator: "\n\n\n"
 exclude: ['README.md', 'LICENSE', 'Rakefile']
 
 url: 'http://howardlu.com'
