@@ -21,7 +21,11 @@ task :deploy => [:build] do
         %x[git clone https://github.com/hhlu/hhlu.github.com.git #{STAGE_DIR}]
         %x[find #{STAGE_DIR}/* ! -path '.' ! -path '*/.git*' -exec rm -rf {} +]
         %x[cp -a #{BUILD_DIR}/* #{STAGE_DIR}]
-        %x[cd #{STAGE_DIR} && git add -A * && git push]
+        %x[cd #{STAGE_DIR} \
+            && git add -A . \
+            && git commit -m '`date`' \
+            && git push
+        ]
 
         deploy_cleanup()
     else
