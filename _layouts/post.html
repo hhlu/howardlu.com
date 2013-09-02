@@ -22,8 +22,17 @@ layout: default
     {{ content }}
 
     <footer>
+        <script src="//platform.twitter.com/widgets.js"></script>
+        <script>
+            twttr.ready(function(twttr) {
+                twttr.events.bind('tweet', function() {
+                    _gaq.push(['_trackSocial', 'twitter', 'tweet', document.URL]);
+                });
+            });
+        </script>
+
         <ul class="interaction-options list-inline">
-            <li><a href="https://twitter.com/intent/tweet?url={{ site.url | cgi_escape }}{{ page.url | cgi_escape }}&text={{ page.title | cgi_escape }}" target="_blank">Share on Twitter</a></li>
+            <li><a href="https://twitter.com/intent/tweet?url={{ site.url | cgi_escape }}{{ page.url | cgi_escape }}&text={{ page.title | cgi_escape }}">Share on Twitter</a></li>
             <li><a href="#wrapper">&uarr; Back to top</a></li>
         </ul>
 
