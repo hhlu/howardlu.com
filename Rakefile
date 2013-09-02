@@ -18,12 +18,18 @@ task :deploy => [:build] do
         puts 'Deploying site...'
 
         %x[mkdir #{STAGE_DIR}]
-        %x[git clone https://github.com/hhlu/hhlu.github.com.git #{STAGE_DIR}]
+        %x[git clone git@github.com:hhlu/hhlu.github.com.git #{STAGE_DIR}]
         %x[find #{STAGE_DIR}/* ! -path '.' ! -path '*/.git*' -exec rm -rf {} +]
         %x[cp -a #{BUILD_DIR}/* #{STAGE_DIR}]
+
+        # Github Pages needs the "404.html" file in the site root directory.
+        %x[mv #{STAGE_DIR}/404/index.html #{STAGE_DIR}/404.html \
+            && rmdir #{STAGE_DIR}/404
+        ]
+
         %x[cd #{STAGE_DIR} \
             && git add -A . \
-            && git commit -m '`date`' \
+            && git commit -m "`date`" \
             && git push
         ]
 
