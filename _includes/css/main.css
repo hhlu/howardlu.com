@@ -277,11 +277,17 @@ footer.main ul.social-media-icons li.twitter a {
 footer.main ul.social-media-icons li.twitter a:hover {
     background-position: -72px -36px;
 }
-footer.main ul.social-media-icons li.rss a {
+footer.main ul.social-media-icons li.gplus a {
     background-position: -108px 0;
 }
-footer.main ul.social-media-icons li.rss a:hover {
+footer.main ul.social-media-icons li.gplus a:hover {
     background-position: -108px -36px;
+}
+footer.main ul.social-media-icons li.rss a {
+    background-position: -144px 0;
+}
+footer.main ul.social-media-icons li.rss a:hover {
+    background-position: -144px -36px;
 }
 
 article {
