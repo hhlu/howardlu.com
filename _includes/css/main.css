@@ -347,10 +347,6 @@ article.full footer ul.interaction-options {
 article.full footer ul.interaction-options li {
     float: left;
 }
-article.full footer ul.interaction-options li.button {
-    height: 20px;
-    overflow: hidden;
-}
 
 .btn {
     font-weight: bold;

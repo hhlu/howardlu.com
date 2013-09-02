@@ -23,14 +23,41 @@ layout: default
 
     <footer>
         <ul class="interaction-options list-inline">
-            <li class="button">
+            <li>
                 <a href="https://twitter.com/share" class="twitter-share-button" data-text="{{ page.title | cgi_escape }}" data-via="HowardHLu" data-count="none">Tweet</a>
             </li>
-            <li class="button">
+            <li>
                 <div class="g-plusone" data-size="tall" data-annotation="none" data-callback="trackPlusOne"></div>
+            </li>
+            <li>
+                <div id="fb-root"></div>
                 <script>
+                    window.fbAsyncInit = function() {
+                        FB.init({
+                            appId: '625720924124984',
+                            channelUrl: '{{ site.url }}/channel.html',
+                            status: true,
+                            cookie: true,
+                            xfbml: true
+                        });
 
+                        FB.Event.subscribe('edge.create', function(targetUrl) {
+                            ga('send', 'social', 'facebook', 'like', targetUrl);
+                        });
+                        FB.Event.subscribe('edge.remove', function(targetUrl) {
+                            ga('send', 'social', 'facebook', 'unlike', targetUrl);
+                        });
+                    };
+
+                    (function(d, s, id) {
+                      var js, fjs = d.getElementsByTagName(s)[0];
+                      if (d.getElementById(id)) return;
+                      js = d.createElement(s); js.id = id;
+                      js.src = "//connect.facebook.net/en_US/all.js";
+                      fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
                 </script>
+                <div class="fb-like" data-href="{{ site.url | uri_escape }}{{ page.url | uri_escape }}" data-width="90" data-layout="button_count" data-show-faces="false" data-send="false"></div>
             </li>
             <li><a href="#top">&uarr; Back to top</a></li>
         </ul>
@@ -53,6 +80,9 @@ layout: default
             function trackPlusOne(params) {
                 if ('on' == params['state']) {
                     ga('send', 'social', 'google', 'plusone', params['href']);
+                }
+                else {
+                    ga('send', 'social', 'google', 'minusone', params['href']);
                 }
             }
         </script>
