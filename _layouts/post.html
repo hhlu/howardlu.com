@@ -22,19 +22,40 @@ layout: default
     {{ content }}
 
     <footer>
-        <script src="//platform.twitter.com/widgets.js"></script>
-        <script>
-            twttr.ready(function(twttr) {
-                twttr.events.bind('tweet', function() {
-                    _gaq.push(['_trackSocial', 'twitter', 'tweet', document.URL]);
-                });
-            });
-        </script>
-
         <ul class="interaction-options list-inline">
-            <li><a href="https://twitter.com/intent/tweet?url={{ site.url | cgi_escape }}{{ page.url | cgi_escape }}&text={{ page.title | cgi_escape }}">Share on Twitter</a></li>
+            <li class="button">
+                <a href="https://twitter.com/share" class="twitter-share-button" data-text="{{ page.title | cgi_escape }}" data-via="HowardHLu" data-count="none">Tweet</a>
+            </li>
+            <li class="button">
+                <div class="g-plusone" data-size="tall" data-annotation="none" data-callback="trackPlusOne"></div>
+                <script>
+
+                </script>
+            </li>
             <li><a href="#top">&uarr; Back to top</a></li>
         </ul>
+
+        <script>
+            $.getScript('http://platform.twitter.com/widgets.js', function() {
+                twttr.ready(function(twttr) {
+                    twttr.events.bind('tweet', function() {
+                        ga('send', 'social', 'twitter', 'tweet', document.URL);
+                    });
+                });
+            });
+
+            (function() {
+                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                po.src = 'https://apis.google.com/js/plusone.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();
+
+            function trackPlusOne(params) {
+                if ('on' == params['state']) {
+                    ga('send', 'social', 'google', 'plusone', params['href']);
+                }
+            }
+        </script>
 
         <div id="disqus_thread"></div>
         <script>

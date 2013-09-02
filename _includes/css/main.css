@@ -342,7 +342,14 @@ article ul.details .tags li.last:after {
 }
 
 article.full footer ul.interaction-options {
-    text-align: right;
+    float: right;
+}
+article.full footer ul.interaction-options li {
+    float: left;
+}
+article.full footer ul.interaction-options li.button {
+    height: 20px;
+    overflow: hidden;
 }
 
 .btn {
@@ -428,6 +435,7 @@ in IE8.
 }
 
 #disqus_thread {
+    clear: both;
     padding: 1.75em 0;
 }
 
