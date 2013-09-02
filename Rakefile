@@ -19,7 +19,12 @@ task :deploy => [:build] do
 
         %x[mkdir #{STAGE_DIR}]
         %x[git clone git@github.com:hhlu/hhlu.github.com.git #{STAGE_DIR}]
-        %x[find #{STAGE_DIR}/* ! -path '.' ! -path '*/.git*' -exec rm -rf {} +]
+        %x[find #{STAGE_DIR}/* \
+            ! -path '.' \
+            ! -path '*/.git*' \
+            ! -name 'README.md' \
+            -exec rm -rf {} +
+        ]
         %x[cp -a #{BUILD_DIR}/* #{STAGE_DIR}]
 
         # Github Pages needs the "404.html" file in the site root directory.
