@@ -1,5 +1,6 @@
 ---
 layout: post
+description: An introduction to automated virtual system management using Vagrant and Puppet
 group: blog
 tags:
 - Linux
@@ -99,7 +100,7 @@ you will see a commented block of code similar to the following:
     # end
 
 This tells Vagrant to configure the VM with Puppet using a file called
-`init.pp` in the `manifests` folder. Note that all paths are relative to where 
+`init.pp` in the `manifests` folder. Note that all paths are relative to where
 your Vagrantfile is located.
 <a href="http://docs.puppetlabs.com/puppet/3/reference/index.html" target="_blank">Puppet</a>
 is quite an extensive product which you could easily tell by the length of its

@@ -1,9 +1,12 @@
 pygments: true
 permalink: pretty
-paginate: 2
+paginate: 10
 paginate_path: 'page/:num'
 
 excerpt_separator: "\n\n\n"
 exclude: ['README.md', 'LICENSE', 'Rakefile']
 
 url: 'http://howardlu.com'
+
+tag_page_title: 'Archive: ":tag"'
+tag_page_description: 'Posts by Howard Lu archived under ":tag"'
