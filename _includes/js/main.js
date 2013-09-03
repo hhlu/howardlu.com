@@ -5,21 +5,19 @@ $(function() {
     var $header = $('header.main');
 
     $(window).bind('scroll resize', function() {
-        if (Modernizr.mq('only screen and (min-width: 768px)')) {
-            if (
-                $(this).scrollTop() >= $header.offset().top + $header.innerHeight()
-            ) {
-                $nav.css({
-                    position: 'fixed',
-                    top: 0
-                });
-            }
-            else {
-                $nav.css({
-                    position: 'absolute',
-                    top: 'auto'
-                });
-            }
+        if (
+            $(this).scrollTop() >= $header.offset().top + $header.innerHeight()
+        ) {
+            $nav.css({
+                position: 'fixed',
+                top: 0
+            });
+        }
+        else {
+            $nav.css({
+                position: 'absolute',
+                top: 'auto'
+            });
         }
     });
 
