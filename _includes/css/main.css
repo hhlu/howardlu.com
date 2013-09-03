@@ -509,9 +509,9 @@ in IE8.
 }
 
 @media (max-width: 768px) {
-    .navbar-header {
-        padding-left: 0;
-        padding-right: 0;
+    nav.navbar {
+        position: fixed;
+        top: 0;
     }
     .lt-ie8 .navbar-header {
         height: 60px;
