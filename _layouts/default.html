@@ -9,6 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{ page.description | escape }}">
     <meta name="author" content="Howard Lu">
+
+    <meta property="og:title" content="{{ page.title | escape }}">
+    <meta property="og:type" content="{{ page.og_type }}">
+    <meta property="og:image" content="{{ site.url }}/template/logo200.png">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:site_name" content="howardlu.com">
+    <meta property="og:description" content="{{ page.description }}">
+
     <link href="{{ site.url }}/atom.xml" type="application/atom+xml" rel="alternate" title="Blog Atom Feed for howardlu.com">
 
     <title>howardlu.com | {{ page.title | escape }}</title>
