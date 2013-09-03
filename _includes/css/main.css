@@ -226,16 +226,16 @@ footer.main .container {
     padding-bottom: 40px;
     padding-top: 40px;
 }
-footer.main a {
-    color: #fff;
-}
-footer.main a:hover {
-    text-decoration: underline;
-}
 footer.main p.copyright {
     clear: both;
     float: right;
     margin: 0;
+}
+footer.main p.copyright a {
+    color: #999;
+}
+footer.main p.copyright a:hover {
+    color: #f4f4f4;
 }
 
 footer.main ul.social-media-icons {
