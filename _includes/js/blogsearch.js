@@ -61,7 +61,7 @@ function BlogSearch() {
                 $searchInput.trigger('keyup');
             }
         });
-    }
+    };
 
     this.bindControls = function() {
         $toggleLink.click(function(e) {
