@@ -32,9 +32,10 @@ task :deploy => [:build] do
             && rmdir #{STAGE_DIR}/404
         ]
 
+        revision_hash = get_latest_commit_hash()
         %x[cd #{STAGE_DIR} \
             && git add -A . \
-            && git commit -m "`date`" \
+            && git commit -m "deploying revision #{revision_hash} of hhlu/howardlu.com" \
             && git push
         ]
 
@@ -107,4 +108,15 @@ end
 #
 def deploy_cleanup()
     %x[rm -rf #{STAGE_DIR}]
+end
+
+# Returns the short commit hash of the project checkout HEAD revision.
+#
+# * *Returns*:
+#    - The commit hash string.
+#
+def get_latest_commit_hash()
+    hash = %x[git log -1 --pretty=format:%h]
+
+    hash
 end
