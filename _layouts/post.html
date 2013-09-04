@@ -23,14 +23,14 @@ og_type: article
     {{ content }}
 
     <footer>
-        <ul class="interaction-options list-inline">
+        <ul class="social-media-butons">
             <li>
                 <a href="https://twitter.com/share" class="twitter-share-button" data-text="{{ page.title | cgi_escape }}" data-via="HowardHLu" data-count="none">Tweet</a>
             </li>
             <li>
                 <div class="g-plusone" data-size="tall" data-annotation="none"></div>
             </li>
-            <li>
+            <li class="last">
                 <div id="fb-root"></div>
                 <script>
                     window.fbAsyncInit = function() {
@@ -60,8 +60,8 @@ og_type: article
                 </script>
                 <div class="fb-like" data-href="{{ site.url | uri_escape }}{{ page.url | uri_escape }}" data-width="90" data-layout="button_count" data-show-faces="false" data-send="false"></div>
             </li>
-            <li><a href="#top">&uarr; Back to top</a></li>
         </ul>
+        <p class="top"><a href="#top">&uarr; Back to top</a></p>
 
         <script>
             $.getScript('http://platform.twitter.com/widgets.js', function() {

@@ -341,11 +341,26 @@ article ul.details .tags li.last:after {
     content: "";
 }
 
-article.full footer ul.interaction-options {
-    float: right;
-}
-article.full footer ul.interaction-options li {
+article.full footer {
     float: left;
+    width: 100%;
+}
+article.full footer ul.social-media-butons {
+    float: right;
+    list-style: none;
+    margin: 0 0 0.875em 0;
+    padding: 0;
+}
+article.full footer ul.social-media-butons li {
+    float: left;
+    margin-right: 10px;
+}
+article.full footer ul.social-media-butons li.last {
+    margin-right: 0;
+}
+article.full footer p.top {
+    clear: both;
+    float: right;
 }
 
 .btn {
