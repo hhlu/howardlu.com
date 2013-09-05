@@ -4,10 +4,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% for post in site.posts %}    <url>
         <loc>{{ site.url }}{{ post.url }}</loc>
-        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+        <lastmod>{% if post.lastmod %}{{ post.lastmod | date_to_xmlschema }}{% else %}{{ post.date | date_to_xmlschema }}{% endif %}</lastmod>
     </url>
 {% endfor %}{% for page in site.pages %}{% if page.layout != nil and page.path != '404.html' %}
     <url>
         <loc>{{ site.url }}{{ page.url }}</loc>
+        {% if page.lastmod %}<lastmod>{{ page.lastmod | date_to_xmlschema }}</lastmod>{% endif %}
     </url>{% endif %}{% endfor %}
 </urlset>

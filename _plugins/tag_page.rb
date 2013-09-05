@@ -13,6 +13,7 @@ module Jekyll
                 .sub(':tag', tag)
             self.data['description'] = site.config['tag_page_description'] \
                 .sub(':tag', tag)
+            self.data['lastmod'] = site.time
         end
     end
 end

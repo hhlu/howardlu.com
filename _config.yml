@@ -3,8 +3,9 @@ permalink: pretty
 paginate: 10
 paginate_path: 'page/:num'
 
-excerpt_separator: "\n\n\n"
+excerpt_separator: '\n\n\n'
 exclude: ['README.md', 'LICENSE', 'Rakefile']
+timezone: 'America/Vancouver'
 
 url: 'http://howardlu.com'
 
