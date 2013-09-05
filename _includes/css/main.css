@@ -209,7 +209,6 @@ header.main p.subtitle {
 }
 
 main {
-    overflow: hidden;
     padding: 100px 0 40px;
 }
 
@@ -290,9 +289,6 @@ footer.main ul.social-media-icons li.rss a:hover {
     background-position: -144px -36px;
 }
 
-article {
-    overflow: hidden;
-}
 article.summary {
     border-bottom: 1px solid #ccc;
     margin-bottom: 1.75em;
