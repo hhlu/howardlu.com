@@ -8,6 +8,10 @@ WebFontConfig = {
             'Open+Sans:300,400italic,400,700',
             'Bree+Serif'
         ]
+    },
+    custom: {
+        families: ['Mono Social Icons Font'],
+        urls: ['/css/fonts/monosocialiconsfont.css']
     }
 };
 

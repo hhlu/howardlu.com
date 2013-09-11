@@ -163,7 +163,7 @@ a.navbar-brand:focus {
 }
 
 header.main {
-    background: #222 url("../template/header-footer-bg.png") repeat;
+    background: #222 url("/template/header-footer-bg.png") repeat;
     padding: 120px 0;
 }
 
@@ -191,10 +191,10 @@ header.main p.subtitle {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -168px;
+    margin: 0 auto -200px;
 }
 #wrapper div.push {
-    height: 168px;
+    height: 200px;
 }
 
 @media (min-width: 768px) {
@@ -213,17 +213,16 @@ main {
 }
 
 footer.main {
-    background: #222 url("../template/header-footer-bg.png") repeat;
+    background: #222 url("/template/header-footer-bg.png") repeat;
     color: #999;
     font-family: 'Quattrocento', serif;
-    font-size: 20px;
-    height: 168px;
+    font-size: 22px;
     overflow: hidden;
 }
 footer.main .container {
     overflow: hidden;
-    padding-bottom: 40px;
-    padding-top: 40px;
+    padding-bottom: 50px;
+    padding-top: 50px;
 }
 footer.main p.copyright {
     clear: both;
@@ -240,53 +239,50 @@ footer.main p.copyright a:hover {
 footer.main ul.social-media-icons {
     float: right;
     list-style: none;
-    margin: 0 0 0.875em 0;
+    margin: 0 0 0.4375em 0;
     padding: 0;
 }
 footer.main ul.social-media-icons li {
     float: left;
-    height: 36px;
-    margin-left: 10px;
-    overflow: hidden;
-    text-indent: -9999px;
-    width: 36px;
+    margin-right: 10px;
+}
+footer.main ul.social-media-icons li.last {
+    margin-right: 0;
 }
 footer.main ul.social-media-icons li a {
-    background-image: url("../template/social-media-icons.png");
-    background-repeat: no-repeat;
-    display: block;
-    height: 36px;
-    width: 36px;
+    color: #555;
+    font-family: 'Mono Social Icons Font';
+    font-size: 50px;
+    line-height: 50px;
+
+    -webkit-text-rendering: optimizeLegibility;
+    -moz-text-rendering: optimizeLegibility;
+    -ms-text-rendering: optimizeLegibility;
+    -o-text-rendering: optimizeLegibility;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -ms-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    font-smoothing: antialiased;
 }
-footer.main ul.social-media-icons li.linkedin a {
-    background-position: 0 0;
+/*
+Icons will not display after being hidden by the .wf-loading rule
+in IE8.
+*/
+.lt-ie9 footer.main ul.social-media-icons li a {
+    visibility: visible !important;
 }
-footer.main ul.social-media-icons li.linkedin a:hover {
-    background-position: 0 -36px;
+
+footer.main ul.social-media-icons a:hover {
+    color: #f4f4f4;
 }
-footer.main ul.social-media-icons li.github a {
-    background-position: -36px 0;
+footer.main ul.social-media-icons a:before {
+    content: attr(data-icon);
 }
-footer.main ul.social-media-icons li.github a:hover {
-    background-position: -36px -36px;
-}
-footer.main ul.social-media-icons li.twitter a {
-    background-position: -72px 0;
-}
-footer.main ul.social-media-icons li.twitter a:hover {
-    background-position: -72px -36px;
-}
-footer.main ul.social-media-icons li.gplus a {
-    background-position: -108px 0;
-}
-footer.main ul.social-media-icons li.gplus a:hover {
-    background-position: -108px -36px;
-}
-footer.main ul.social-media-icons li.rss a {
-    background-position: -144px 0;
-}
-footer.main ul.social-media-icons li.rss a:hover {
-    background-position: -144px -36px;
+footer.main ul.social-media-icons a span {
+    float: left;
+    text-indent: -9999px;
 }
 
 article.summary {
@@ -427,7 +423,7 @@ article.full footer p.top {
     padding-right: 5px;
 }
 /*
-Glyphicons will not display after being hidden by the .wf-loading rule
+Icons will not display after being hidden by the .wf-loading rule
 in IE8.
 */
 .lt-ie9 .glyphicon {
