@@ -266,13 +266,6 @@ footer.main ul.social-media-icons li a {
     -o-font-smoothing: antialiased;
     font-smoothing: antialiased;
 }
-/*
-Icons will not display after being hidden by the .wf-loading rule
-in IE8.
-*/
-.lt-ie9 footer.main ul.social-media-icons li a {
-    visibility: visible !important;
-}
 
 footer.main ul.social-media-icons a:hover {
     color: #f4f4f4;
@@ -421,13 +414,6 @@ article.full footer p.top {
 
 .glyphicon {
     padding-right: 5px;
-}
-/*
-Icons will not display after being hidden by the .wf-loading rule
-in IE8.
-*/
-.lt-ie9 .glyphicon {
-    visibility: visible !important;
 }
 
 .img.pull-left {

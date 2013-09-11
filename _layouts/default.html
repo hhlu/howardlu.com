@@ -24,6 +24,28 @@
 
     <link href="/css/site.css" rel="stylesheet">
 
+    <!--[if IE 8]>
+        <script>
+            /*
+            * Forces the browser to redraw all :before and :after elements.
+            * This function called by js/fonts.js as a fix to icon font
+            * rendering in IE 8.
+            */
+            function redrawBeforeAfterElements() {
+                var head = document.getElementsByTagName('head')[0];
+                var style = document.createElement('style');
+
+                style.type = 'text/css';
+                style.styleSheet.cssText = ':before, :after { content:none !important }';
+
+                head.appendChild(style);
+                setTimeout(function() {
+                    head.removeChild(style);
+                }, 0);
+            }
+        </script>
+    <![endif]-->
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="/js/jquery.js"><\/script>')</script>
     <script src="/js/plugins.js"></script>
