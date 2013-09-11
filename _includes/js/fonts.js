@@ -17,7 +17,15 @@ WebFontConfig = {
         if ('function' == typeof redrawBeforeAfterElements) {
             redrawBeforeAfterElements();
         }
-    }
+    },
+    fontactive: function(familyName, fvd) {
+        if ('Mono Social Icons Font' == familyName) {
+            if ('function' == typeof redrawBeforeAfterElements) {
+                redrawBeforeAfterElements();
+            }
+        }
+    },
+    timeout: 10000
 };
 
 (function() {
