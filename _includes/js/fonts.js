@@ -11,7 +11,7 @@ WebFontConfig = {
     },
     custom: {
         families: ['Mono Social Icons Font'],
-        urls: ['/css/fonts/monosocialiconsfont.css']
+        urls: ['http://howardlu.com/css/fonts/monosocialiconsfont.css']
     },
     active: function() {
         if ('function' == typeof redrawBeforeAfterElements) {
@@ -24,8 +24,7 @@ WebFontConfig = {
                 redrawBeforeAfterElements();
             }
         }
-    },
-    timeout: 10000
+    }
 };
 
 (function() {
