@@ -6,6 +6,7 @@ tags:
 - Linux
 - Systems
 - VMs
+lastmod: 2013-09-10 19:55
 ---
 Vagrant is an application allowing easy creation and management of virtual machines,
 and Puppet is a system configuration tool that works with it.
