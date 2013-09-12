@@ -1,5 +1,6 @@
 ---
 ---
 {% include css/vendor/bootstrap.css %}
+{% include css/fonts.css %}
 {% include css/main.css %}
 {% include css/syntax.css %}
