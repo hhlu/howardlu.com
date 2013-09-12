@@ -9,20 +9,9 @@ WebFontConfig = {
             'Bree+Serif'
         ]
     },
-    custom: {
-        families: ['Mono Social Icons Font'],
-        urls: ['/css/fonts/monosocialiconsfont.css']
-    },
     active: function() {
         if ('function' == typeof redrawBeforeAfterElements) {
             redrawBeforeAfterElements();
-        }
-    },
-    fontactive: function(familyName, fvd) {
-        if ('Mono Social Icons Font' == familyName) {
-            if ('function' == typeof redrawBeforeAfterElements) {
-                redrawBeforeAfterElements();
-            }
         }
     }
 };
